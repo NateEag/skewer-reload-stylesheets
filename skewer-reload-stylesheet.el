@@ -1,4 +1,4 @@
-;; skewer-css-reload.el -- Reload stylesheets from disk when live-editing CSS.
+;; skewer-reload-stylesheet.el -- Reload stylesheets from disk when live-editing CSS.
 
 ;; This is free and unencumbered software released into the public domain.
 
