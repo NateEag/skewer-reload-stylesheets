@@ -42,7 +42,7 @@
   "Keymap for skewer-reload-stylesheet-mode.")
 
 (defvar skewer-reload-stylesheet-data-root (file-name-directory load-file-name)
-  "Location of data files needed by impatient-mode.")
+  "Location of data files needed by skewer-reload-stylesheet-mode.")
 
 ;;;###autoload
 (define-minor-mode skewer-reload-stylesheet-mode
