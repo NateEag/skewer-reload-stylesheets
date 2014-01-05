@@ -1,17 +1,18 @@
 # Skewer Reload Stylesheet Mode
 
 [skewer-mode](https://raw.github.com/skeeto/skewer-mode/master/README.md)
-is an all-elisp live-editing tool for web development in Emacs. It is a
+is a pure-elisp live-editing tool for web development in Emacs. It is a
 glorious thing.
 
 Alas, when maintaining a codebase with convoluted CSS cascades, skewer's
 built-in CSS mode is not useful. Whenever you send a rule to the browser, it
 appends it to the DOM in a <style> tag.
 
-For many purposes, that works perfectly, but when several stylesheets have
-rules who interact closely via the cascade, skewer-mode's approach isn't
-usable. What you see while live-editing doesn't reflect what you see when you
-refresh.
+For many purposes, that works perfectly.
+
+However, when several stylesheets have rules that interact closely via the
+cascade, skewer-mode's approach isn't useful. What you see while live-editing
+is not what you see when you refresh.
 
 Enter this tiny minor mode.
 
