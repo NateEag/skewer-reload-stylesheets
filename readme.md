@@ -6,7 +6,7 @@ glorious thing.
 
 Alas, when maintaining a codebase with convoluted CSS cascades, skewer's
 built-in CSS mode is not useful. Whenever you send a rule to the browser, it
-appends it to the DOM in a <style> tag.
+appends it to the DOM in a &lt;style&gt; tag.
 
 For many purposes, that works perfectly.
 
