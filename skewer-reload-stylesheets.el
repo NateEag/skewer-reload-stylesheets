@@ -1,4 +1,4 @@
-;; skewer-reload-stylesheet.el -- live-edit CSS stylesheets.
+;; skewer-reload-stylesheets.el -- live-edit CSS stylesheets.
 
 ;; This is free and unencumbered software released into the public domain.
 
@@ -9,12 +9,12 @@
 ;; in-place. When dealing with stylesheets where the cascade is significant,
 ;; this can be much more convenient behavior than skewer-css.el.
 
-;; * C-x C-r -- `skewer-reload-stylesheet-reload-buffer`
+;; * C-x C-r -- `skewer-reload-stylesheets-reload-buffer`
 
 (require 'css-mode)
 (require 'skewer-mode)
 
-(defun skewer-reload-stylesheet-reload-buffer ()
+(defun skewer-reload-stylesheets-reload-buffer ()
   "Reload the current buffer IF it is already included as a link tag."
 
   (interactive)
@@ -24,31 +24,31 @@
   ;; not a valid function.
   (skewer-eval (concat "skewer.reloadStylesheet(\"" (buffer-file-name) "\");")))
 
-(defun skewer-reload-stylesheet-skewer-js-hook ()
+(defun skewer-reload-stylesheets-skewer-js-hook ()
   "Skewer hook function to insert JS for reloading CSS files."
   (insert-file-contents
-   (expand-file-name "skewer-reload-stylesheet.js" skewer-reload-stylesheet-data-root)))
+   (expand-file-name "skewer-reload-stylesheets.js" skewer-reload-stylesheets-data-root)))
 
 ;; GRIPE Seems like bad style to have loading this file ram a hook into skewer,
 ;; especially since skewer may not even be loaded yet.
-(add-hook 'skewer-js-hook 'skewer-reload-stylesheet-skewer-js-hook)
+(add-hook 'skewer-js-hook 'skewer-reload-stylesheets-skewer-js-hook)
 
 ;; Minor mode definition
 
-(defvar skewer-reload-stylesheet-mode-map
+(defvar skewer-reload-stylesheets-mode-map
   (let ((map (make-sparse-keymap)))
     (prog1 map
-      (define-key map (kbd "C-x C-r") 'skewer-reload-stylesheet-reload-buffer)))
-  "Keymap for skewer-reload-stylesheet-mode.")
+      (define-key map (kbd "C-x C-r") 'skewer-reload-stylesheets-reload-buffer)))
+  "Keymap for skewer-reload-stylesheets-mode.")
 
-(defvar skewer-reload-stylesheet-data-root (file-name-directory load-file-name)
-  "Location of data files needed by skewer-reload-stylesheet-mode.")
+(defvar skewer-reload-stylesheets-data-root (file-name-directory load-file-name)
+  "Location of data files needed by skewer-reload-stylesheets-mode.")
 
 ;;;###autoload
-(define-minor-mode skewer-reload-stylesheet-mode
+(define-minor-mode skewer-reload-stylesheets-mode
   "Minor mode for interactively reloading CSS stylesheets."
   :lighter " reload-ss"
-  :keymap skewer-reload-stylesheet-mode-map
+  :keymap skewer-reload-stylesheets-mode-map
   :group 'skewer)
 
-;;; skewer-reload-stylesheet.el ends here
+;;; skewer-reload-stylesheets.el ends here
