@@ -12,9 +12,6 @@
 
 ;; * C-x C-r -- `skewer-reload-stylesheets-reload-buffer`
 
-(require 'css-mode)
-(require 'skewer-mode)
-
 (defun skewer-reload-stylesheets-reload-buffer ()
   "Reload the current buffer IF it is already included as a link tag."
 
