@@ -13,6 +13,9 @@
 
 ;; * C-x C-r -- `skewer-reload-stylesheets-reload-buffer`
 
+(defvar skewer-reload-stylesheets-data-root (file-name-directory load-file-name)
+  "Location of data files needed by skewer-reload-stylesheets-mode.")
+
 (defun skewer-reload-stylesheets-reload-buffer ()
   "Reload the current buffer IF it is already included as a link tag."
 
@@ -39,9 +42,6 @@
     (prog1 map
       (define-key map (kbd "C-x C-r") 'skewer-reload-stylesheets-reload-buffer)))
   "Keymap for skewer-reload-stylesheets-mode.")
-
-(defvar skewer-reload-stylesheets-data-root (file-name-directory load-file-name)
-  "Location of data files needed by skewer-reload-stylesheets-mode.")
 
 ;;;###autoload
 (define-minor-mode skewer-reload-stylesheets-mode
