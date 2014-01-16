@@ -2,16 +2,22 @@
 
 ;; This is free and unencumbered software released into the public domain.
 
-;; Author: Nate Eagleson <nate@nateeag.com>
-;; Created: November 23, 2013
-;; Package-Requires: ((skewer-mode "1.5.3"))
-;; Version: 0.0.1
+;;; Author: Nate Eagleson <nate@nateeag.com>
+;;; Created: November 23, 2013
+;;; Package-Requires: ((skewer-mode "1.5.3"))
+;;; Version: 0.0.1
 
-;; This minor mode provides functionality for reloading whole CSS stylesheets
-;; in-place. When dealing with stylesheets where the cascade is significant,
+;;; Commentary:
+
+;; This minor mode adds live-editing for entire CSS stylesheets to skewer.
+;; When dealing with stylesheets where the cascade is significant,
 ;; this can be much more convenient behavior than skewer-css.el.
 
+;; Key bindings:
+
 ;; * C-x C-r -- `skewer-reload-stylesheets-reload-buffer`
+
+;;; Code:
 
 (defvar skewer-reload-stylesheets-data-root (file-name-directory load-file-name)
   "Location of data files needed by skewer-reload-stylesheets-mode.")
