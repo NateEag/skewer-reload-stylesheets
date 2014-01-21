@@ -1,4 +1,4 @@
-;; skewer-reload-stylesheets.el -- live-edit CSS stylesheets.
+;;; skewer-reload-stylesheets.el --- live-edit CSS stylesheets.
 
 ;; This is free and unencumbered software released into the public domain.
 
@@ -33,13 +33,13 @@
 ;; * C-x C-r -- `skewer-reload-stylesheets-reload-buffer`
 
 ;;; Code:
+(require 'skewer-mode)
 
 (defvar skewer-reload-stylesheets-data-root (file-name-directory load-file-name)
   "Location of data files needed by skewer-reload-stylesheets-mode.")
 
 (defun skewer-reload-stylesheets-reload-buffer ()
   "Reload the current buffer IF it is already included as a link tag."
-
   (interactive)
   (save-buffer)
 
@@ -52,8 +52,6 @@
   (insert-file-contents
    (expand-file-name "skewer-reload-stylesheets.js" skewer-reload-stylesheets-data-root)))
 
-;; GRIPE Seems like bad style to have loading this file ram a hook into skewer,
-;; especially since skewer may not even be loaded yet.
 (add-hook 'skewer-js-hook 'skewer-reload-stylesheets-skewer-js-hook)
 
 ;; Minor mode definition
