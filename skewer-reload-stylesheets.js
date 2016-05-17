@@ -1,7 +1,7 @@
 // Reload any stylesheet imported from `path` by adding (or updating) a
 // skewer_timestamp query param to its href attribute.
 // Return false if no stylesheet was found, or true if it was.
-skewer.reloadStylesheet = function reloadStylesheet(path) {
+skewer.reloadStylesheet = function(path) {
     'use strict';
 
     // Constants.
