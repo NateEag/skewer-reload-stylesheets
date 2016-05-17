@@ -1,0 +1,12 @@
+#! /bin/sh
+
+# Launch an Emacs instance for testing this package.
+
+project_path=$(dirname $(dirname $0))
+
+# There has got to be a smarter way to add package elisp via Cask, but I
+# haven't found it yet.
+exec "$EMACS" -q -l skewer-reload-stylesheets.el \
+     -l skewer-reload-stylesheets-test.el \
+     -f skewer-reload-stylesheets-test-setup \
+     "$@"
