@@ -1,0 +1,4 @@
+*.elc
+
+# Packages installed for development.
+/.cask/

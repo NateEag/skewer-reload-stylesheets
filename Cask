@@ -4,3 +4,6 @@
 (package-file "skewer-reload-stylesheets.el")
 
 (depends-on "skewer-mode")
+
+(development
+ (depends-on "md-readme"))
