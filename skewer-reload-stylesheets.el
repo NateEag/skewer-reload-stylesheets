@@ -22,8 +22,8 @@
 
 ;; Next, open a CSS file used on the skewered page, and activate this mode.
 ;; Make some edits then press `C-x C-r`. The stylesheet will be saved, and the
-;; browser will reload it from disk, by removing its link tag from the DOM then
-;; re-inserting it.
+;; browser will reload it from disk, by updating the query string on the link
+;; tag's href attribute.
 
 ;; and there you are - cross-browser live-editing for arbitrarily complex
 ;; stylesheets.
