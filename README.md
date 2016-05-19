@@ -2,10 +2,10 @@
 
 This is free and unencumbered software released into the public domain.
 
-# Author: Nate Eagleson <nate@nateeag.com>
-# Created: November 23, 2013
-# Package-Requires: ((skewer-mode "1.5.3"))
-# Version: 0.0.1
+* Author: Nate Eagleson <nate@nateeag.com>
+* Created: November 23, 2013
+* Package-Requires: ((skewer-mode "1.5.3"))
+* Version: 0.1.0
 
 # Commentary
 
