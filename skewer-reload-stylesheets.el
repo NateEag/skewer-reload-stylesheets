@@ -39,16 +39,35 @@
   "Location of data files needed by skewer-reload-stylesheets-mode.")
 
 (defun skewer-reload-stylesheets-reload-buffer ()
-  "Reload the current buffer IF it is already included as a link tag."
+  "Save current buffer and ask skewer to reload it."
+
+  (declare (obsolete skewer-reload-stylesheets-reload-on-save "0.1.0"))
+
   (interactive)
   (save-buffer)
+
+  (skewer-reload-stylesheets-reload))
+
+(defun skewer-reload-stylesheets-reload ()
+  "Ask browser to reload the stylesheet for the current buffer."
 
   ;; TODO I tried to use skewer-apply, but it said skewer.reloadStylesheet was
   ;; not a valid function.
   (skewer-eval (concat "skewer.reloadStylesheet(\"" (buffer-file-name) "\");")))
 
+(defun skewer-reload-stylesheets-reload-on-save ()
+  "Ask skewer to reload stylesheets immediately after save.
+
+Call this in your css-mode-hook to automatically reload stylesheets on save."
+
+  (add-hook 'after-save-hook
+            'skewer-reload-stylesheets-reload
+            nil
+            t))
+
 (defun skewer-reload-stylesheets-skewer-js-hook ()
   "Skewer hook function to insert JS for reloading CSS files."
+
   (insert-file-contents
    (expand-file-name "skewer-reload-stylesheets.js" skewer-reload-stylesheets-data-root)))
 
