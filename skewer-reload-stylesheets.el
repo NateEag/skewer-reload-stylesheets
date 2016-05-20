@@ -14,7 +14,7 @@
 ;; skewer-css works for many cases, but if you're dealing with multiple
 ;; stylesheets and involved cascading (a.k.a. "legacy code"), it isn't so
 ;; useful. What you see while live-editing is not what you see when you
-;; refresh, since skewer-css puts the updated CSS in new <style> tags.
+;; refresh, since skewer-css puts the updated CSS in new style tags.
 
 ;; Enter this minor mode.
 
