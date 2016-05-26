@@ -24,8 +24,8 @@
 
 ;; Enter this minor mode.
 
-;; It refreshes stylesheets after saves by adding (or updating) a query string to
-;; the current buffer's link tag in the browser.
+;; It refreshes stylesheets after saves by adding or updating a query string to
+;; the relevant link tags in the browser.
 
 ;; Thus, what you see on a fresh pageload is always exactly what you see while
 ;; live-editing.
@@ -36,6 +36,14 @@
 ;;
 ;;     (skewer-reload-stylesheets-mode)
 ;;     (skewer-reload-stylesheets-reload-on-save)
+
+;; If you're live-editing Less, SCSS, or similar, just set
+;; skewer-reload-css-compile-command to your compile command:
+;;
+;;     (setq skewer-reload-stylesheets-compile-command "gulp css")
+;;
+;; This variable is best set in .dir-locals.el, so it can be set correctly
+;; per-project.
 
 ;;; Usage
 
@@ -52,8 +60,8 @@
 
 ;; Note that browser plugins like
 ;; [Custom Javascript for Websites](https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija?hl=en)
-;; make it easy to auto-skewer URLs on pageload, so you don't have to re-skewer
-;; after every refresh.
+;; make it easy to auto-skewer URLs on pageload, so you don't have to manually
+;; re-skewer after every refresh.
 
 ;; Key bindings:
 
