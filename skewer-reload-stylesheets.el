@@ -102,7 +102,11 @@ few vendor files that will usually be 304s.")
   (skewer-reload-stylesheets-reload))
 
 (defun skewer-reload-stylesheets-compile-sentinel (process event)
-  "Sentinel to handle status changes in CSS compilation jobs."
+  "Sentinel to handle status changes in CSS compilation jobs.
+
+TODO It would be nice to handle failed compiles more cleanly.
+Right now it just throws an error, but things like syntax errors are
+expected outcomes while programming."
 
   (cond ((equal event "finished\n")
          (skewer-eval "skewer.reloadStylesheets.reloadAll();"))
@@ -117,7 +121,7 @@ few vendor files that will usually be 304s.")
 
   (if skewer-reload-stylesheets-compile-command
       ;; Compile CSS, and reload all stylesheets when finished.
-      (let ((compile-css (start-process
+      (let ((compile-css (start-process-shell-command
                           "skewer-make-css"
                           "*skewer-reload-stylesheets-compile-log*"
                           skewer-reload-stylesheets-compile-command)))
