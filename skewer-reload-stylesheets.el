@@ -62,6 +62,29 @@
 (defvar skewer-reload-stylesheets-data-root (file-name-directory load-file-name)
   "Location of data files needed by skewer-reload-stylesheets-mode.")
 
+(defvar skewer-reload-stylesheets-compile-command nil
+  "Command to compile current stylesheet into a CSS file.
+
+If using SCSS, Less, or similar, set this to your compile command.
+
+The command will be run asynchronously after a save, and all stylesheets in the
+document will be reloaded once the build is complete.
+
+By reloading all stylesheets, we work around the need to figure out which
+stylesheets actually need to be reloaded, which could be involved for a complex
+set of stylesheets.
+
+The best place to define this is .dir-locals.el for a given project.
+
+TODO Automatically pick up compile command from scss-mode config?
+There may be a lot of smart defaulting we could do for the various CSS
+variant modes.
+
+TODO See if there's a need to reload only changed stylesheets. If a project had
+a lot of stylesheets, reloading them all could be pretty slow, but the
+compile-to-CSS projects I've seen tend to have just one main one along with a
+few vendor files that will usually be 304s.")
+
 (defun skewer-reload-stylesheets-reload-buffer ()
   "Save current buffer and ask skewer to reload it."
 
@@ -72,12 +95,35 @@
 
   (skewer-reload-stylesheets-reload))
 
+(defun skewer-reload-stylesheets-compile-sentinel (process event)
+  "Sentinel to handle status changes in CSS compilation jobs."
+
+  (cond ((equal event "finished\n")
+         (skewer-eval "skewer.reloadStylesheets.reloadAll();"))
+
+        ;; TODO Just use 't' as my second cond?
+        ;; Is any event other than successful exit a failure?
+        ((string-prefix-p "exited abnormally" event)
+         (error "CSS compilation failure: %s" event))))
+
 (defun skewer-reload-stylesheets-reload ()
   "Ask browser to reload the stylesheet for the current buffer."
 
-  ;; TODO I tried to use skewer-apply, but it said skewer.reloadStylesheet was
-  ;; not a valid function.
-  (skewer-eval (concat "skewer.reloadStylesheet(\"" (buffer-file-name) "\");")))
+  (if skewer-reload-stylesheets-compile-command
+      ;; Compile CSS, and reload all stylesheets when finished.
+      (let ((compile-css (start-process
+                          "skewer-make-css"
+                          "*skewer-reload-stylesheets-compile-log*"
+                          skewer-reload-stylesheets-compile-command)))
+
+        (set-process-sentinel compile-css
+                              'skewer-reload-stylesheets-compile-sentinel))
+
+    ;; No compile command, so we must be in a CSS file. Just reload the
+    ;; corresponding stylesheets.
+    ;; TODO I tried to use skewer-apply, but it said skewer.reloadStylesheet was
+    ;; not a valid function.
+    (skewer-eval (concat "skewer.reloadStylesheets.reload(\"" (buffer-file-name) "\");"))))
 
 (defun skewer-reload-stylesheets-reload-on-save ()
   "Ask skewer to reload stylesheets immediately after save.
