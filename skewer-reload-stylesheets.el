@@ -9,16 +9,22 @@
 
 ;;; Commentary:
 
-;; This minor mode provides live-editing of CSS stylesheets via skewer.
+;; This minor mode provides live-editing of CSS and transpile-to-CSS languages
+;; via skewer.
 
 ;; skewer-css works for many cases, but if you're dealing with multiple
 ;; stylesheets and involved cascading (a.k.a. "legacy code"), it isn't so
 ;; useful. What you see while live-editing is not what you see when you
-;; refresh, since skewer-css puts the updated CSS in new style tags.
+;; refresh, since skewer-css puts the updated CSS in new style tags, thus
+;; changing their specificity.
+
+;; skewer-css also doesn't work with Less, SCSS, or any of the lesser-known
+;; compile-to-CSS languages - just vanilla CSS (though there is the skewer-less
+;; package, if you run Less's in-browser JS version for development).
 
 ;; Enter this minor mode.
 
-;; It refreshes stylesheets on save by adding (or updating) a query string to
+;; It refreshes stylesheets after saves by adding (or updating) a query string to
 ;; the current buffer's link tag in the browser.
 
 ;; Thus, what you see on a fresh pageload is always exactly what you see while
