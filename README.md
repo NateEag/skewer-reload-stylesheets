@@ -1,4 +1,4 @@
-# skewer-reload-stylesheets.el --- live-edit CSS stylesheets.
+# skewer-reload-stylesheets.el --- live-edit CSS/SCSS/Less/etc stylesheets.
 
 This is free and unencumbered software released into the public domain.
 
