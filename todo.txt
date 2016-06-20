@@ -1,0 +1,5 @@
+* Consider using Emacs' existing compile infrastructure for transpilation. I'm
+  not sure it actually would improve the UX, but it would make the package
+  smaller. I guess people who already use compile.el would find it easier to
+  adapt to the package. compile-command and compilation-finish-functions are
+  what I'm thinking of here.
