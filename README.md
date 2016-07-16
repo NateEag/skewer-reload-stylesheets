@@ -1,11 +1,11 @@
-# skewer-reload-stylesheets.el --- live-edit CSS/SCSS/Less/etc stylesheets.
+# skewer-reload-stylesheets.el --- live-edit CSS, SCSS, Less, and friends.
 
 This is free and unencumbered software released into the public domain.
 
 * Author: Nate Eagleson <nate@nateeag.com>
 * Created: November 23, 2013
 * Package-Requires: ((skewer-mode "1.5.3"))
-* Version: 0.2.0
+* Version: 0.3.0
 
 # Commentary
 
@@ -32,27 +32,27 @@ live-editing.
 
 # Setup
 
-Put the following in your css-mode-hook:
+Install from MELPA, then put the following somewhere in your init file:
 
-    (skewer-reload-stylesheets-mode)
-    (skewer-reload-stylesheets-reload-on-save)
+(add-hook 'css-mode-hook 'skewer-reload-stylesheets-start-editing)
 
-If you're live-editing Less, SCSS, or similar, just set
-skewer-reload-css-compile-command to your compile command:
+If you're live-editing Less, SCSS, or similar, add
+`skewer-reload-stylesheets-start-editing' to the appropriate hook variable,
+then set `skewer-reload-css-compile-command' to your transpile command:
 
     (setq skewer-reload-stylesheets-compile-command "gulp css")
 
-This variable is best set in .dir-locals.el, so it can be set correctly
-per-project.
+This variable is best set in per-project in .dir-locals.el, so it can be set
+correctly per-project.
 
 # Usage
 
-Start skewer. Open browser windows for the URLs whose CSS you want to
-live-edit and skewer those windows.
+Open a browser window for the URL whose stylesheets you want to live-edit.
+Skewer that window.
 
-Open the stylesheet(s) you want to work in.
+In emacs, open the stylesheet(s) you want to live-edit.
 
-Make some changes in a stylesheet and save it. The updates will immediately
+Make some changes in the stylesheet and save it. The updates will immediately
 be reflected in the skewered windows.
 
 and there you are - cross-browser live-editing for arbitrarily complex
