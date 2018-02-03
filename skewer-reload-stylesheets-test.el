@@ -21,7 +21,9 @@
   "Set up as much of the skewer infrastructure as we can."
   (setq debug-on-error t)
 
-  (setq httpd-port 9000)
+  ;; Arbitrarily chosen port, in hopes it's unlikely to conflict with anything
+  ;; running on the average dev's machine.
+  (setq httpd-port 9371)
 
   (add-hook 'css-mode-hook
             'skewer-reload-stylesheets-start-editing)
