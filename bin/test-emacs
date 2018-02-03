@@ -9,4 +9,5 @@ project_path=$(dirname $(dirname $0))
 exec "$EMACS" -q -l skewer-reload-stylesheets.el \
      -l skewer-reload-stylesheets-test.el \
      -f skewer-reload-stylesheets-test-setup \
+     -f skewer-reload-stylesheets-test-one \
      "$@"
