@@ -1,3 +1,9 @@
+* Write some functional tests. When I first thought about this I dismissed it
+  since I thought it would necessarily involve comparing screenshots of
+  browsers, which is a pain. I have just realized that for my purposes, just
+  verifying that the correct files are loaded (or not loaded, as the case may
+  be) with simple-httpd's log buffer should do the job just fine.
+
 * Register an after-revert-hook to reload the stylesheet. This is only really
   relevant when auto-revert is on, and I need to be careful not to break
   anyone's setup, so perhaps make it opt-in? I mostly run into this with magit
